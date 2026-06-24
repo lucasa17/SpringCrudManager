@@ -3,64 +3,53 @@ package br.edu.ifsuldeminas.mch.webii.crudmanager.spring.model.utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
-
-import br.edu.ifsuldeminas.mch.webii.crudmanager.spring.model.entities.Address;
-import br.edu.ifsuldeminas.mch.webii.crudmanager.spring.model.entities.User;
-import br.edu.ifsuldeminas.mch.webii.crudmanager.spring.model.repositories.AdrressRepository;
-import br.edu.ifsuldeminas.mch.webii.crudmanager.spring.model.repositories.UserRepository;
+import br.edu.ifsuldeminas.mch.webii.crudmanager.spring.model.entities.*;
+import br.edu.ifsuldeminas.mch.webii.crudmanager.spring.model.repositories.*;
 
 @Component
 public class InitializeDataBase implements CommandLineRunner {
-	
-	@Autowired
-	private UserRepository userRepository;
-	
-	@Autowired
-	private AdrressRepository adrressRepository;
-	
-	@Override
-	public void run(String... args) throws Exception {
-		Address aEmerson = new Address();
-		aEmerson.setPlace("Rua emerson");
-		aEmerson.setNumber("10");
-		aEmerson.setZipCode("130000");
-		adrressRepository.save(aEmerson);
-		
-		Address aLuiza = new Address();
-		aLuiza.setPlace("Rua luiza");
-		aLuiza.setNumber("11");
-		aLuiza.setZipCode("131000");
-		adrressRepository.save(aLuiza);
-		
-		Address aAna = new Address();
-		aAna.setPlace("Rua ana");
-		aAna.setNumber("12");
-		aAna.setZipCode("132000");
-		adrressRepository.save(aAna);
-		
-		// Consolida a tupla no banco
-		adrressRepository.flush();
-				
-		User emerson = new User();
-		emerson.setName("Emerson Carvalho");
-		emerson.setGender("M");
-		emerson.setEmail("emerson@mail.com");
-		emerson.setAddress(aEmerson);
-		
-		User luiza = new User();
-		luiza.setName("Luiza Carvalho");
-		luiza.setGender("F");
-		luiza.setEmail("lu@mail.com");
-		luiza.setAddress(aLuiza);
-		
-		User ana = new User();
-		ana.setName("Ana Carvalho");
-		ana.setGender("F");
-		ana.setEmail("ana@mail.com");
-		ana.setAddress(aAna);
-		
-		userRepository.save(emerson);
-		userRepository.save(luiza);
-		userRepository.save(ana);
-	}
+
+    @Autowired private UserRepository userRepository;
+    @Autowired private MovieRepository filmeRepository;
+
+    @Override
+    public void run(String... args) throws Exception {
+
+        User emerson = new User();
+        emerson.setName("Emerson Carvalho");
+        emerson.setEmail("emerson@mail.com");
+        emerson.setTelefone("35999990001");
+        userRepository.save(emerson);
+
+        User luiza = new User();
+        luiza.setName("Luiza Carvalho");
+        luiza.setEmail("lu@mail.com");
+        luiza.setTelefone("35999990002");
+        userRepository.save(luiza);
+
+        userRepository.flush();
+
+        Movie f1 = new Movie();
+        f1.setTitulo("Interestelar");
+        f1.setGenero("Ficção Científica");
+        f1.setDuracao(169);
+        f1.setClassificacao("12 anos");
+        filmeRepository.save(f1);
+
+        Movie f2 = new Movie();
+        f2.setTitulo("O Poderoso Chefão");
+        f2.setGenero("Drama");
+        f2.setDuracao(175);
+        f2.setClassificacao("16 anos");
+        filmeRepository.save(f2);
+
+        Movie f3 = new Movie();
+        f3.setTitulo("Coringa");
+        f3.setGenero("Suspense");
+        f3.setDuracao(122);
+        f3.setClassificacao("16 anos");
+        filmeRepository.save(f3);
+
+        filmeRepository.flush();
+    }
 }

@@ -1,85 +1,60 @@
 package br.edu.ifsuldeminas.mch.webii.crudmanager.spring.model.entities;
 
+import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
 import org.hibernate.validator.constraints.Length;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
-import jakarta.validation.Valid;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
-
-@Entity(name="usuarios")
+@Entity(name = "user")
 public class User {
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Integer id;
-	
-	@NotBlank(message="O nome do usuário não pode ser vazio.")
-	private String name;
-	
-	@NotBlank(message="O gênero do usuário não pode ser vazio.")
-	@Length(max = 1, message = "Genero deve ter apenas 1 caracter.")
-	private String gender;
-	
-	@NotBlank(message="O email do usuário não pode ser vazio.")
-	@Email(message = "Endereço de email inválido.")
-	private String email;
-	
-	@OneToOne(optional = false)
-	@Valid
-	private Address address;
-	
-	public User() {}
-	
-	User(Integer id){
-		this.id = id;
-		setName("");
-		setGender("");
-		setEmail("");
-	}
 
-	public Integer getId() {
-		return id;
-	}
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer id;
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
+    @NotBlank(message = "O nome não pode ser vazio.")
+    private String name;
 
-	public String getName() {
-		return name;
-	}
+    @NotBlank(message = "O email não pode ser vazio.")
+    @Email(message = "Endereço de email inválido.")
+    private String email;
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    @NotBlank(message = "O telefone não pode ser vazio.")
+    @Length(max = 15, message = "Telefone deve ter no máximo 15 caracteres.")
+    private String telefone;
 
-	public String getGender() {
-		return gender;
-	}
+    public User() {
+    	
+    }
 
-	public void setGender(String gender) {
-		this.gender = gender;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-	
-	public Address getAddress() {
-		return address;
-	}
-	
-	public void setAddress(Address address) {
-		this.address = address;
-	}
+    public Integer getId() { 
+    	return id; 
+    }
+    
+    public void setId(Integer id) { 
+    	this.id = id; 
+    }
+    
+    public String getName() { 
+    	return name; 
+    }
+    
+    public void setName(String name) { 
+    	this.name = name;
+    }
+    
+    public String getEmail() {
+    	return email; 
+    }
+    
+    public void setEmail(String email) {
+    	this.email = email;
+    }
+    
+    public String getTelefone() {
+    	return telefone; 
+    }
+    
+    public void setTelefone(String telefone) { 
+    	this.telefone = telefone; 
+    }
 }
