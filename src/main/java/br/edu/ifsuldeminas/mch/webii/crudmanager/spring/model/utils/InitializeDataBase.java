@@ -19,12 +19,14 @@ public class InitializeDataBase implements CommandLineRunner {
         emerson.setName("Emerson Carvalho");
         emerson.setEmail("emerson@mail.com");
         emerson.setTelefone("35999990001");
+        emerson.setGender("M");
         userRepository.save(emerson);
 
         User luiza = new User();
         luiza.setName("Luiza Carvalho");
         luiza.setEmail("lu@mail.com");
         luiza.setTelefone("35999990002");
+        luiza.setGender("F");
         userRepository.save(luiza);
 
         userRepository.flush();

@@ -22,6 +22,10 @@ public class User {
     @Length(max = 15, message = "Telefone deve ter no máximo 15 caracteres.")
     private String telefone;
 
+    @NotBlank(message = "O gênero não pode ser vazio.")
+    @Length(max = 1, message = "Gênero deve ter apenas 1 caractere.")
+    private String gender;
+    
     public User() {
     	
     }
@@ -56,5 +60,13 @@ public class User {
     
     public void setTelefone(String telefone) { 
     	this.telefone = telefone; 
+    }
+    
+    public String getGender() { 
+    	return gender; 
+    }
+    
+    public void setGender(String gender) { 
+    	this.gender = gender; 
     }
 }
