@@ -76,10 +76,10 @@ public class Ticket {
     	this.preco = preco; 
     }
     
-    public Movie getFilme() { 
+    public Movie getMovie() { 
     	return movie; 
     }
-    public void setFilme(Movie movie) { 
+    public void setMovie(Movie movie) { 
     	this.movie = movie;
     }
     

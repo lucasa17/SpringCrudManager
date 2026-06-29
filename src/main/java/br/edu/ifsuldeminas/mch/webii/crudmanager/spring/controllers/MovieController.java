@@ -14,36 +14,36 @@ import jakarta.validation.Valid;
 public class MovieController {
 
     @Autowired
-    private MovieRepository filmeRepository;
+    private MovieRepository movieRepository;
 
-    @GetMapping("/filmes")
+    @GetMapping("/movies")
     public String listFilmes(Model model) {
-        model.addAttribute("filmes", filmeRepository.findAll());
-        return "filmes";
+        model.addAttribute("movies", movieRepository.findAll());
+        return "movies";
     }
 
-    @GetMapping("/filmes/form")
-    public String filmeForm(@ModelAttribute("filme") Movie movie) {
-        return "filme_form";
+    @GetMapping("/movies/form")
+    public String filmeForm(@ModelAttribute("movie") Movie movie) {
+        return "movie_form";  // era "movies_form"
     }
 
-    @PostMapping("/filmes/save")
-    public String filmeSave(@ModelAttribute("filme") @Valid Movie movie,
+    @PostMapping("/movie/save")
+    public String filmeSave(@ModelAttribute("movie") @Valid Movie movie,
                             BindingResult errors) {
-        if (errors.hasErrors()) return "filme_form";
-        filmeRepository.save(movie);
-        return "redirect:/filmes";
+        if (errors.hasErrors()) return "movie_form";
+        movieRepository.save(movie);
+        return "redirect:/movies";
     }
 
-    @GetMapping("/filmes/{id}")
+    @GetMapping("/movies/{id}")
     public String filmeUpdate(@PathVariable Integer id, Model model) {
-        filmeRepository.findById(id).ifPresent(f -> model.addAttribute("filme", f));
-        return "filme_form";
+    	movieRepository.findById(id).ifPresent(f -> model.addAttribute("movie", f));
+        return "movie_form";
     }
 
-    @GetMapping("/filmes/delete/{id}")
+    @GetMapping("/movies/delete/{id}")
     public String filmeDelete(@PathVariable Integer id) {
-        filmeRepository.findById(id).ifPresent(filmeRepository::delete);
-        return "redirect:/filmes";
+    	movieRepository.findById(id).ifPresent(movieRepository::delete);
+        return "redirect:/movies";
     }
 }

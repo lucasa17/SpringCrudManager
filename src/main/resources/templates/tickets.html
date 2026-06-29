@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="cabecalho :: head"></div>
+    <title>Crud Manager - Ingressos</title>
+</head>
+<body>
+    <div th:replace="cabecalho :: navbar"></div>
+    <div class="container my-2">
+        <a th:href="@{/}" class="btn btn-secondary btn-sm mb-3">← Início</a>
+        <h1>Ingressos</h1>
+        <a class="btn btn-primary btn-sm mb-3 float-right" th:href="@{/tickets/form}">Adicionar Ingresso</a>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Usuário</th><th>Filme</th><th>Data</th><th>Horário</th><th>Sala</th><th>Preço</th><th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="ticket : ${tickets}">
+                    <td th:text="${ticket.usuario.name}"></td>
+                    <td th:text="${ticket.movie.titulo}"></td>
+                    <td th:text="${ticket.dataIngresso}"></td>
+                    <td th:text="${ticket.horario}"></td>
+                    <td th:text="${ticket.sala}"></td>
+                    <td th:text="${'R$ ' + ticket.preco}"></td>
+                    <td>
+                        <a class="btn btn-primary btn-sm" th:href="@{/tickets/{id}(id=${ticket.id})}">Alterar</a>
+                        <a class="btn btn-danger btn-sm" th:href="@{/tickets/delete/{id}(id=${ticket.id})}">Excluir</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

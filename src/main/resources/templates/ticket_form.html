@@ -1,0 +1,55 @@
+<!DOCTYPE html>	
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="cabecalho :: head"></div>
+    <title>Crud Manager - Ingresso</title>
+</head>
+<body>
+    <div class="container my-2">
+        <h2>Ingresso</h2>
+        <form th:action="@{/tickets/save}" method="POST" th:object="${ticket}">
+            <input type="hidden" th:field="*{id}">
+
+            <label>Usuário</label>
+            <span class="text-danger" th:if="${#fields.hasErrors('usuario')}" th:errors="*{usuario}"></span>
+            <select class="form-control mb-3 col-4" th:field="*{usuario}">
+                <option value="">Selecione um usuário</option>
+                <option th:each="u : ${usuarios}"
+                        th:value="${u.id}"
+                        th:text="${u.name}">
+                </option>
+            </select>
+
+            <label>Filme</label>
+            <span class="text-danger" th:if="${#fields.hasErrors('movie')}" th:errors="*{movie}"></span>
+            <select class="form-control mb-3 col-4" th:field="*{movie}">
+                <option value="">Selecione um filme</option>
+                <option th:each="f : ${movies}"
+                        th:value="${f.id}"
+                        th:text="${f.titulo}">
+                </option>
+            </select>
+
+            <span class="text-danger" th:if="${#fields.hasErrors('dataIngresso')}" th:errors="*{dataIngresso}"></span>
+			<input type="date" class="form-control mb-3 col-4"
+			       name="dataIngresso"
+			       th:value="${ticket != null ? ticket.dataIngresso : ''}">
+			       
+            <span class="text-danger" th:if="${#fields.hasErrors('horario')}" th:errors="*{horario}"></span>
+			<input type="time" class="form-control mb-3 col-4"
+			       name="horario"
+			       th:value="${ticket != null ? ticket.horario : ''}">
+			       
+            <span class="text-danger" th:if="${#fields.hasErrors('sala')}" th:errors="*{sala}"></span>
+            <input type="text" placeholder="Sala" class="form-control mb-3 col-4" th:field="*{sala}">
+
+			<span class="text-danger" th:if="${#fields.hasErrors('preco')}" th:errors="*{preco}"></span>
+            <input type="number" step="0.01" placeholder="Preço" class="form-control mb-3 col-4" th:field="*{preco}">
+
+            <button type="submit" class="btn btn-info col-2">Salvar</button>
+        </form>
+        <hr>
+        <a th:href="@{/tickets}">← Voltar</a>
+    </div>
+</body>
+</html>

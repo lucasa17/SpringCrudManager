@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import org.hibernate.validator.constraints.Length;
 
-@Entity(name = "user")
+@Entity(name = "usuarios")
 public class User {
 
     @Id
