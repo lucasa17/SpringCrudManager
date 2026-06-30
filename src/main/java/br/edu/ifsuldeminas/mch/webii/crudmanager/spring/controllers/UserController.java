@@ -2,6 +2,7 @@ package br.edu.ifsuldeminas.mch.webii.crudmanager.spring.controllers;
 
 import java.util.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -27,10 +28,14 @@ public class UserController {
         return "user_form";
     }
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
     @PostMapping("/users/save")
     public String userSave(@ModelAttribute("user") @Valid User user,
                            BindingResult errors) {
         if (errors.hasErrors()) return "user_form";
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         userRepository.save(user);
         return "redirect:/users";
     }

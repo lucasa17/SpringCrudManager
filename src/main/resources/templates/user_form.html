@@ -4,7 +4,7 @@
     <div th:replace="cabecalho :: head"></div>
     <title>Crud Manager - Usuário</title>
 </head>
-<body>
+<body> 
     <div class="container my-2">
         <h2>Usuário</h2>
         <form th:action="@{/users/save}" method="POST" th:object="${user}">
@@ -22,10 +22,15 @@
             <span class="text-danger" th:if="${#fields.hasErrors('telefone')}" th:errors="*{telefone}"></span>
             <input type="text" placeholder="Telefone" class="form-control mb-3 col-4" th:field="*{telefone}">
 
+			<span class="text-danger" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
+			<input type="password" placeholder="Senha" class="form-control mb-3 col-4" th:field="*{password}">
+
             <button type="submit" class="btn btn-info col-2">Salvar</button>
         </form>
         <hr>
-        <a th:href="@{/users}">← Voltar</a>
-    </div>
+		<div class="mt-4">
+		    <a th:href="@{/users}" class="btn btn-outline-secondary">Voltar</a>
+		</div>    
+	</div>
 </body>
 </html>

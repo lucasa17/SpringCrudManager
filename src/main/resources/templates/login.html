@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="cabecalho :: head"></div>
+    <title>Cinema - Login</title>
+</head>
+<body>
+    <div class="container my-5" style="max-width: 400px;">
+        <h2 class="text-center mb-4">Login</h2>
+        <form th:action="@{/login}" method="POST">
+            <div th:if="${param.error}" class="alert alert-danger">Usuário ou senha inválidos.</div>
+            <div th:if="${param.logout}" class="alert alert-success">Logout realizado com sucesso.</div>
+
+			<input type="text" name="username" placeholder="Email" class="form-control mb-3" required>
+            <input type="password" name="password" placeholder="Senha" class="form-control mb-3" required>
+
+            <button type="submit" class="btn btn-primary btn-block">Entrar</button>
+        </form>
+    </div>
+</body>
+</html>

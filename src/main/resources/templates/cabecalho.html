@@ -22,10 +22,13 @@
 <nav th:fragment="navbar" class="navbar navbar-expand navbar-dark bg-dark mb-3">
     <div class="container">
         <a class="navbar-brand" th:href="@{/}">Cinema</a>
-        <div class="navbar-nav">
+        <div class="navbar-nav mr-auto">
             <a class="nav-link" th:href="@{/users}">Usuários</a>
             <a class="nav-link" th:href="@{/movies}">Filmes</a>
             <a class="nav-link" th:href="@{/tickets}">Ingressos</a>
         </div>
+        <form th:action="@{/logout}" method="POST" class="form-inline">
+            <button type="submit" class="btn btn-outline-light btn-sm">Sair</button>
+        </form>
     </div>
 </nav>

@@ -2,6 +2,7 @@ package br.edu.ifsuldeminas.mch.webii.crudmanager.spring.model.utils;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import br.edu.ifsuldeminas.mch.webii.crudmanager.spring.model.entities.*;
 import br.edu.ifsuldeminas.mch.webii.crudmanager.spring.model.repositories.*;
@@ -12,6 +13,9 @@ public class InitializeDataBase implements CommandLineRunner {
     @Autowired private UserRepository userRepository;
     @Autowired private MovieRepository filmeRepository;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+    
     @Override
     public void run(String... args) throws Exception {
 
@@ -19,14 +23,16 @@ public class InitializeDataBase implements CommandLineRunner {
         emerson.setName("Emerson Carvalho");
         emerson.setGender("M");
         emerson.setEmail("emerson@mail.com");
-        emerson.setTelefone("35999990001");
+        emerson.setTelefone("35222222222");
+        emerson.setPassword(passwordEncoder.encode("123456"));
         userRepository.save(emerson);
 
         User luiza = new User();
         luiza.setName("Luiza Carvalho");
         luiza.setGender("F");
         luiza.setEmail("lu@mail.com");
-        luiza.setTelefone("35999990002");
+        luiza.setTelefone("35111111111");
+        luiza.setPassword(passwordEncoder.encode("123456"));
         userRepository.save(luiza);
 
         userRepository.flush();
@@ -36,6 +42,7 @@ public class InitializeDataBase implements CommandLineRunner {
         f1.setGenero("Ficção Científica");
         f1.setDuracao(169);
         f1.setClassificacao("12 anos");
+        
         filmeRepository.save(f1);
 
         Movie f2 = new Movie();

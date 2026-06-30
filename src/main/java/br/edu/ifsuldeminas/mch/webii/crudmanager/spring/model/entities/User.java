@@ -3,8 +3,12 @@ package br.edu.ifsuldeminas.mch.webii.crudmanager.spring.model.entities;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import org.hibernate.validator.constraints.Length;
+import jakarta.validation.constraints.Pattern;
+import java.util.List;
+import java.util.ArrayList;
 
-@Entity(name = "usuarios")
+@Entity
+@Table(name = "usuarios")
 public class User {
 
     @Id
@@ -17,15 +21,22 @@ public class User {
     @NotBlank(message = "O email não pode ser vazio.")
     @Email(message = "Endereço de email inválido.")
     private String email;
-
-    @NotBlank(message = "O telefone não pode ser vazio.")
-    @Length(max = 15, message = "Telefone deve ter no máximo 15 caracteres.")
-    private String telefone;
+    
+    @NotBlank(message = "A senha não pode ser vazia.")
+    @Length(min = 4, message = "A senha deve ter no mínimo 4 caracteres.")
+    private String password;
 
     @NotBlank(message = "O gênero não pode ser vazio.")
     @Length(max = 1, message = "Gênero deve ter apenas 1 caractere.")
+    @Pattern(regexp = "[MF]", message = "Gênero deve ser M ou F.")
     private String gender;
-    
+
+    @NotBlank(message = "O telefone não pode ser vazio.")
+    @Length(max = 11, message = "Telefone deve ter no máximo 11 caracteres.")
+    private String telefone;
+
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Ticket> tickets = new ArrayList<>();
     public User() {
     	
     }
@@ -68,5 +79,13 @@ public class User {
     
     public void setGender(String gender) { 
     	this.gender = gender; 
+    }
+    
+    public String getPassword() { 
+    	return password;
+    }
+    
+    public void setPassword(String password) {
+    	this.password = password; 
     }
 }

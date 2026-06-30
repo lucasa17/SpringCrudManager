@@ -7,7 +7,7 @@
 <body>
     <div th:replace="cabecalho :: navbar"></div>
     <div class="container my-2">
-        <a th:href="@{/}" class="btn btn-secondary btn-sm mb-3">← Início</a>
+        <a th:href="@{/}" class="btn btn-secondary btn-sm mb-3">Início</a>
         <h1>Filmes</h1>
         <a class="btn btn-primary btn-sm mb-3 float-right" th:href="@{/movies/form}">Adicionar Filme</a>
         <table class="table table-striped">
@@ -27,7 +27,7 @@
                         <a class="btn btn-danger btn-sm" th:href="@{/movies/delete/{id}(id=${movie.id})}">Excluir</a>
                     </td>
                 </tr>
-            </tbody>c
+            </tbody>
         </table>
     </div>
 </body>
