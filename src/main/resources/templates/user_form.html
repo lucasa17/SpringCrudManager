@@ -10,19 +10,28 @@
         <form th:action="@{/users/save}" method="POST" th:object="${user}">
             <input type="hidden" th:field="*{id}">
 
-            <span class="text-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+            <label>Nome</label>
+            <span class="text-danger d-block" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
             <input type="text" placeholder="Nome" class="form-control mb-3 col-4" th:field="*{name}">
 
-            <span class="text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+            <label>Email</label>
+            <span class="text-danger d-block" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
             <input type="text" placeholder="Email" class="form-control mb-3 col-4" th:field="*{email}">
             
-            <span class="text-danger" th:if="${#fields.hasErrors('gender')}" th:errors="*{gender}"></span>
-			<input type="text" placeholder="Gênero (M/F)" class="form-control mb-3 col-4" th:field="*{gender}">
+            <label>Gênero</label>
+			<span class="text-danger d-block" th:if="${#fields.hasErrors('gender')}" th:errors="*{gender}"></span>
+			<select class="form-control mb-3 col-4" th:field="*{gender}">
+			    <option value="">Selecione o gênero</option>
+			    <option value="M">Masculino</option>
+			    <option value="F">Feminino</option>
+			</select>
 
-            <span class="text-danger" th:if="${#fields.hasErrors('telefone')}" th:errors="*{telefone}"></span>
+            <label>Telefone</label>
+            <span class="text-danger d-block" th:if="${#fields.hasErrors('telefone')}" th:errors="*{telefone}"></span>
             <input type="text" placeholder="Telefone" class="form-control mb-3 col-4" th:field="*{telefone}">
 
-			<span class="text-danger" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
+            <label>Senha</label>
+			<span class="text-danger d-block" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
 			<input type="password" placeholder="Senha" class="form-control mb-3 col-4" th:field="*{password}">
 
             <button type="submit" class="btn btn-info col-2">Salvar</button>

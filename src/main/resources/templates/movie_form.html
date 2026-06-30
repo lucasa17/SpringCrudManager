@@ -10,17 +10,29 @@
         <form th:action="@{/movie/save}" method="POST" th:object="${movie}">
             <input type="hidden" th:field="*{id}">
 
-            <span class="text-danger" th:if="${#fields.hasErrors('titulo')}" th:errors="*{titulo}"></span>
+            <label>Título</label> 
+            <span class="text-danger d-block" th:if="${#fields.hasErrors('titulo')}" th:errors="*{titulo}"></span>
             <input type="text" placeholder="Título" class="form-control mb-3 col-4" th:field="*{titulo}">
 
-            <span class="text-danger" th:if="${#fields.hasErrors('genero')}" th:errors="*{genero}"></span>
+            <label>Gênero</label>
+            <span class="text-danger d-block" th:if="${#fields.hasErrors('genero')}" th:errors="*{genero}"></span>
             <input type="text" placeholder="Gênero" class="form-control mb-3 col-4" th:field="*{genero}">
 
-            <span class="text-danger" th:if="${#fields.hasErrors('duracao')}" th:errors="*{duracao}"></span>
+            <label>Duração</label>
+            <span class="text-danger d-block" th:if="${#fields.hasErrors('duracao')}" th:errors="*{duracao}"></span>
             <input type="number" placeholder="Duração (min)" class="form-control mb-3 col-4" th:field="*{duracao}">
 
-            <span class="text-danger" th:if="${#fields.hasErrors('classificacao')}" th:errors="*{classificacao}"></span>
-            <input type="text" placeholder="Classificação" class="form-control mb-3 col-4" th:field="*{classificacao}">
+			<label>Classificação</label>
+			<span class="text-danger d-block" th:if="${#fields.hasErrors('classificacao')}" th:errors="*{classificacao}"></span>
+			<select class="form-control mb-3 col-4" th:field="*{classificacao}">
+			    <option value="">Selecione a classificação</option>
+			    <option value="Livre">Livre</option>
+			    <option value="10 anos">10 anos</option>
+			    <option value="12 anos">12 anos</option>
+			    <option value="14 anos">14 anos</option>
+			    <option value="16 anos">16 anos</option>
+			    <option value="18 anos">18 anos</option>
+			</select>
 
             <button type="submit" class="btn btn-info col-2">Salvar</button>
         </form>

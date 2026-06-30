@@ -27,8 +27,6 @@ public class User {
     private String password;
 
     @NotBlank(message = "O gênero não pode ser vazio.")
-    @Length(max = 1, message = "Gênero deve ter apenas 1 caractere.")
-    @Pattern(regexp = "[MF]", message = "Gênero deve ser M ou F.")
     private String gender;
 
     @NotBlank(message = "O telefone não pode ser vazio.")

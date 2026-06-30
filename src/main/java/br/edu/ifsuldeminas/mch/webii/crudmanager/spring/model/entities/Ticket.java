@@ -26,13 +26,15 @@ public class Ticket {
     @DecimalMin(value = "0.01", message = "O preço deve ser maior que zero.")
     private BigDecimal preco;
 
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "idFilme")
-    private Movie movie;
-
+    @NotNull(message = "Selecione um usuário.")
     @ManyToOne(optional = false)
     @JoinColumn(name = "idUsuario")
     private User usuario;
+
+    @NotNull(message = "Selecione um filme.")
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "idFilme")
+    private Movie movie;
 
     public Ticket() {}
 
