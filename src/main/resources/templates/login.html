@@ -14,8 +14,10 @@
 			<input type="text" name="username" placeholder="Email" class="form-control mb-3" required>
             <input type="password" name="password" placeholder="Senha" class="form-control mb-3" required>
 
-            <button type="submit" class="btn btn-primary btn-block">Entrar</button>
-        </form>
+			<button type="submit" class="btn btn-primary btn-block">Entrar</button>
+			<hr>
+			<p class="text-center">Não tem conta? <a th:href="@{/users/form}">Cadastre-se</a></p>        
+		</form>
     </div>
 </body>
 </html>

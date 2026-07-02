@@ -26,6 +26,7 @@ public class InitializeDataBase implements CommandLineRunner {
         emerson.setTelefone("35222222222");
         emerson.setPassword(passwordEncoder.encode("123456"));
         userRepository.save(emerson);
+        
         User luiza = new User();
         luiza.setName("Luiza Carvalho");
         luiza.setGender("F");
@@ -34,6 +35,7 @@ public class InitializeDataBase implements CommandLineRunner {
         luiza.setPassword(passwordEncoder.encode("123456"));
         userRepository.save(luiza);
         userRepository.flush();
+        
         Movie f1 = new Movie();
         f1.setTitulo("Interestelar");
         f1.setGenero("Ficção Científica");
